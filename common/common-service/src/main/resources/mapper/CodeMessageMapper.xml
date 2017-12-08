@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cksmaster.common.mapper.CodeMessageMapper">
+
+    <sql id="Base_Column_List">
+        id, `key`, msg, memo,create_time,status,last_update_time
+    </sql>
+
+    <select id="total" resultType="long">
+        SELECT count(id) FROM code_message
+    </select>
+
+
+    <select id="findCodeMessage" resultType="com.cksmaster.common.entity.CodeMessage"
+            parameterType="com.cksmaster.core.utils.Page">
+        select
+        <include refid="Base_Column_List"/>
+        from code_message
+        where 1 = 1
+        <if test="page.filter.key != null">
+            AND `key` = #{page.filter.key}
+        </if>
+        <if test="page.filter.msg != null">
+            and msg = #{page.filter.msg}
+        </if>
+        LIMIT #{page.limitStart},#{page.pageSize}
+
+    </select>
+
+    <insert id="insert" parameterType="com.cksmaster.common.entity.CodeMessage">
+        insert into code_message (id, `key`, msg,memo,status,create_time)
+        values (#{id,jdbcType=INTEGER}, #{key,jdbcType=INTEGER}, #{msg,jdbcType=VARCHAR},
+        #{memo,jdbcType=VARCHAR},#{status},#{createTime}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.cksmaster.common.entity.CodeMessage">
+        update code_message
+        <set>
+            <if test="key != null">
+                `key` = #{key,jdbcType=INTEGER},
+            </if>
+            <if test="msg != null">
+                msg = #{msg,jdbcType=VARCHAR},
+            </if>
+            <if test="memo != null">
+                memo = #{memo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from code_message
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+</mapper>

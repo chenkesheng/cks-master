@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cksmaster.user.mapper.UserTokenMapper">
+    <resultMap id="BaseResultMap" type="com.cksmaster.user.entity.User">
+        <id column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="token" property="token" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="BOOLEAN"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="expiry_time" property="expiryTime" jdbcType="DATE"/>
+        <result column="system_type" property="systemType" jdbcType="INTEGER"/>
+        <result column="expiry_type" property="expiryType" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        uid, token, status, create_time, expiry_time, system_type,expiry_type
+    </sql>
+
+    <select id="findByToken" resultType="com.cksmaster.core.entity.UserToken" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from user_token
+        where token = #{token}
+    </select>
+
+    <insert id="insertUserToken" parameterType="com.cksmaster.core.entity.UserToken">
+        insert into user_token(
+        <if test="token != null">
+            token,
+        </if>
+        <if test="uid != null">
+            uid,
+        </if>
+        create_time,
+        <if test="status != null">
+            status,
+        </if>
+        expiry_time,
+        <if test="systemType != null">
+            system_type,
+        </if>
+        expiry_type)
+        VALUES(
+        #{token},#{uid},#{createTime},#{status},#{expiryTime},#{systemType},#{expiryType})
+    </insert>
+
+</mapper>

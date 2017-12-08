@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cksmaster.user.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.cksmaster.user.entity.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_name" property="user_name" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="nick_name" property="nick_name" jdbcType="VARCHAR"/>
+        <result column="create_time" property="create_time" jdbcType="DATE"/>
+        <result column="update_last_time" property="update_last_time" jdbcType="DATE"/>
+    </resultMap>
+    <sql id="Base_Table">
+        id, user_name, password, email, address, nick_name,create_time,update_last_time
+    </sql>
+    <sql id="Base_Column_List">
+        id, user_name, password, email, address, nick_name
+    </sql>
+
+    <select id="findByUsername" resultType="com.cksmaster.user.entity.User" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where user_name = #{username}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.cksmaster.user.entity.User">
+    insert into user (id, user_name, password,
+      email, address, nick_name,create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},#{createTime}
+      )
+  </insert>
+
+    <insert id="insertSelective" parameterType="com.cksmaster.user.entity.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="nickname != null">
+                nickname,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertUser" parameterType="com.cksmaster.user.entity.User">
+        insert into user(
+        <if test="username != null">
+            username,
+        </if>
+        <if test="password != null">
+            password,
+        </if>
+        <if test="email != null">
+            email,
+        </if>
+        <if test="address != null">
+            address,
+        </if>
+        <if test="nickname != null">
+            nickname,
+        </if>
+        createAt,updateLastTime)
+        VALUES(
+        #{username},#{password},#{email},#{address},#{nickname},#{createAt},#{updateLastTime})
+
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.cksmaster.user.entity.User">
+        update user
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cksmaster.user.entity.User">
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

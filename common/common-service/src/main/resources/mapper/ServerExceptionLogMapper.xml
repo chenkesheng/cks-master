@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cksmaster.common.mapper.ServerExceptionLogMapper">
+
+    <insert id="insert" parameterType="com.cksmaster.common.entity.ServerExceptionLog">
+        insert into server_exception_log (matched_path,user_type,user_id,sys,request_uri,request_method,
+        request_params, ua, ip,add_time,status,send_mail_status
+        )
+        values (#{matchedPath,jdbcType=VARCHAR}, #{userType,jdbcType=INTEGER},
+        #{userId}, #{sys}, #{requestUri,jdbcType=VARCHAR},#{requestMethod,jdbcType=VARCHAR},#{requestParams,jdbcType=VARCHAR},
+        #{ua,jdbcType=VARCHAR},#{ip,jdbcType=VARCHAR},#{addTime},#{status},#{sendMailStatus}
+        )
+    </insert>
+</mapper>
