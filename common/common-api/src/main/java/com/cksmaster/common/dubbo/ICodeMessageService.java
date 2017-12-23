@@ -1,7 +1,6 @@
 package com.cksmaster.common.dubbo;
 
 import com.cksmaster.common.entity.CodeMessage;
-import com.cksmaster.core.entity.UserToken;
 import com.cksmaster.core.utils.Page;
 
 /**
@@ -33,5 +32,10 @@ public interface ICodeMessageService {
      * @param codeMessage
      */
     void insertCodeMessage(CodeMessage codeMessage);
+
+    /**
+     * 更新错误码
+     */
+    void updateCodeMessage(CodeMessage codeMessage);
 
 }

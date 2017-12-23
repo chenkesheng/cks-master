@@ -27,6 +27,15 @@
 
     </select>
 
+    <select id="findById" resultType="com.cksmaster.common.entity.CodeMessage"
+            parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from code_message
+        where
+        id = #{id}
+    </select>
+
     <insert id="insert" parameterType="com.cksmaster.common.entity.CodeMessage">
         insert into code_message (id, `key`, msg,memo,status,create_time)
         values (#{id,jdbcType=INTEGER}, #{key,jdbcType=INTEGER}, #{msg,jdbcType=VARCHAR},

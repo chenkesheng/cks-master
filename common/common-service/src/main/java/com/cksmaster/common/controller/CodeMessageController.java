@@ -1,12 +1,9 @@
 package com.cksmaster.common.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.cksmaster.common.dubbo.ICodeMessageService;
 import com.cksmaster.common.entity.CodeMessage;
 import com.cksmaster.core.annotation.NotLogin;
-import com.cksmaster.core.entity.UserToken;
 import com.cksmaster.core.utils.Page;
-import com.cksmaster.user.dubbo.IUserTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,5 +43,11 @@ public class CodeMessageController {
     @NotLogin
     public void insertCodeMessage(CodeMessage codeMessage) {
         codeMessageService.insertCodeMessage(codeMessage);
+    }
+
+    @NotLogin
+    @RequestMapping(value = "update-code", method = RequestMethod.POST)
+    public void update(CodeMessage codeMessage){
+        codeMessageService.updateCodeMessage(codeMessage);
     }
 }

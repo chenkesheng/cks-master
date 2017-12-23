@@ -3,10 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <groupId>com.cksmaster.user</groupId>
-    <artifactId>user-api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-
     <parent>
         <artifactId>user</artifactId>
         <groupId>com.cksmaster.user</groupId>
@@ -14,7 +10,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-
-    <name>cks-master-user-api</name>
+    <groupId>com.cksmaster.user</groupId>
+    <artifactId>user-api</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>cks::user-api</name>
 
 </project>

@@ -10,26 +10,21 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cksmaster.common</groupId>
-    <artifactId>common</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
-
     <modules>
         <module>common-api</module>
         <module>common-service</module>
     </modules>
 
-    <name>cks-master-common</name>
+    <groupId>com.cksmaster.common</groupId>
+    <artifactId>common</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-    <properties>
-        <mybatis-spring-boot>1.2.0</mybatis-spring-boot>
-        <mysql-connector>5.1.39</mysql-connector>
-    </properties>
+    <name>cks::common</name>
 
     <dependencies>
         <dependency>
-            <groupId>com.cksmaster.core</groupId>
+            <groupId>com.cks.core</groupId>
             <artifactId>core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

@@ -3,6 +3,7 @@ package com.cksmaster.common.mapper;
 import com.cksmaster.common.entity.CodeMessage;
 import com.cksmaster.core.utils.Page;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -38,6 +39,7 @@ public interface CodeMessageMapper {
      *
      * @param codeMessage
      */
+    @Transactional
     void update(CodeMessage codeMessage);
 
     /**
@@ -46,4 +48,12 @@ public interface CodeMessageMapper {
      * @param id
      */
     void delete(@Param("id") Integer id);
+
+    /**
+     * id查询错误码
+     *
+     * @param id
+     * @return
+     */
+    CodeMessage findById(@Param("id") Integer id);
 }

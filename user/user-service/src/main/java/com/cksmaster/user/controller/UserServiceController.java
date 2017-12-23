@@ -5,7 +5,7 @@ import com.cksmaster.common.dubbo.ICodeMessageService;
 import com.cksmaster.common.entity.CodeMessage;
 import com.cksmaster.core.annotation.NotLogin;
 import com.cksmaster.core.utils.Page;
-import com.cksmaster.user.dubbo.UserService;
+import com.cksmaster.user.dubbo.IUserService;
 import com.cksmaster.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("user")
 @RestController
 public class UserServiceController {
+
     @Autowired
-    private UserService userService;
+    private IUserService userService;
     @Reference
     private ICodeMessageService codeMessageService;
 
@@ -56,6 +57,7 @@ public class UserServiceController {
     @NotLogin
     @RequestMapping(value = "find", method = RequestMethod.GET)
     public Page<CodeMessage> find(Page<CodeMessage>page){
-        return codeMessageService.findPage(page);
+        Page<CodeMessage> codeMessagePage = codeMessageService.findPage(page);
+        return codeMessagePage;
     }
 }

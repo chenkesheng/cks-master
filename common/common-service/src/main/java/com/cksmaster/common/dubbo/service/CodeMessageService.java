@@ -1,16 +1,12 @@
 package com.cksmaster.common.dubbo.service;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.cksmaster.common.dubbo.ICodeMessageService;
 import com.cksmaster.common.entity.CodeMessage;
 import com.cksmaster.common.mapper.CodeMessageMapper;
-import com.cksmaster.core.entity.UserToken;
 import com.cksmaster.core.utils.CollectionUtil;
 import com.cksmaster.core.utils.Page;
-import com.cksmaster.user.dubbo.IUserTokenService;
 import com.google.common.collect.ImmutableMap;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,5 +100,11 @@ public class CodeMessageService implements ICodeMessageService {
         codeMessage.setStatus(CodeMessage.STATUS_OPEN);
         codeMessage.setCreateTime(new Date());
         codeMessageMapper.insert(codeMessage);
+    }
+    @Override
+    public void updateCodeMessage(CodeMessage codeMessage) {
+        codeMessageMapper.update(codeMessage);
+        CodeMessage codeMessage1 = codeMessageMapper.findById(codeMessage.getId());
+        System.out.println("==================================="+codeMessage1.getKey());
     }
 }

@@ -19,16 +19,11 @@
         <module>user-service</module>
     </modules>
 
-    <name>cks-master-user</name>
-
-    <properties>
-        <mybatis-spring-boot>1.2.0</mybatis-spring-boot>
-        <mysql-connector>5.1.39</mysql-connector>
-    </properties>
+    <name>cks::user</name>
 
     <dependencies>
         <dependency>
-            <groupId>com.cksmaster.core</groupId>
+            <groupId>com.cks.core</groupId>
             <artifactId>core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
