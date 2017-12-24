@@ -10,10 +10,9 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="com.cksmaster"/>
-    <context:property-placeholder location="classpath*:*.yml"
-                                  ignore-unresolvable="true"/>
+    <!--<context:property-placeholder location="classpath*:*.yml"-->
+                                  <!--ignore-unresolvable="true"/>-->
 
-    <bean id="userMybatisConfig" class="com.cksmaster.user.base.MybatisConfig"></bean>
 
     <!--dubbo基础配置-->
     <!-- 提供方应用信息，用于计算依赖关系 -->
@@ -21,7 +20,7 @@
     <!-- 使用multicast广播注册中心暴露服务地址 -->
     <!--  <dubbo:registry address="multicast://224.5.6.7:1234" /> -->
     <!-- 使用zookeeper注册中心暴露服务地址 -->
-    <dubbo:registry timeout="20000" protocol="zookeeper" address="zookeeper://192.168.10.128:2181" />
+    <dubbo:registry timeout="20000" protocol="zookeeper" address="zookeeper://127.0.0.1:2181" />
     <dubbo:provider timeout="20000" version="1.0.0" delay="-1" retries="0"/>
     <dubbo:monitor protocol="registry"/>
     <!-- 用dubbo协议在20880端口暴露服务 -->

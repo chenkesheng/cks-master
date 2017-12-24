@@ -1,5 +1,6 @@
 package com.cksmaster.common.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Date;
  * @author cks
  * @Date 2017/7/21.
  */
-public class CodeMessage {
+public class CodeMessage implements Serializable{
     /**
      * 状态2为删除
      */

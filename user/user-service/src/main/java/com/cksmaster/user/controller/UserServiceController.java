@@ -57,8 +57,6 @@ public class UserServiceController {
     @NotLogin
     @RequestMapping(value = "find", method = RequestMethod.GET)
     public Page<CodeMessage> find(Page<CodeMessage>page){
-        page.setPageNum(1);
-        page.setPageSize(1);
         Page<CodeMessage> codeMessagePage = codeMessageService.findPage(page);
         return codeMessagePage;
     }

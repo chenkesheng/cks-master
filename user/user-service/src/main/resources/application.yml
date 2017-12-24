@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     name: cks_master
-    url: jdbc:mysql://127.0.0.1:3306/cks_master
+    url: jdbc:mysql://127.0.0.1:3306/cks_master?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
