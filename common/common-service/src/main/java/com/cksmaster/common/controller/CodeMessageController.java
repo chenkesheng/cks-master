@@ -1,6 +1,6 @@
 package com.cksmaster.common.controller;
 
-import com.cksmaster.common.dubbo.ICodeMessageService;
+import com.cksmaster.common.dubbo.service.CodeMessageService;
 import com.cksmaster.common.entity.CodeMessage;
 import com.cksmaster.core.annotation.NotLogin;
 import com.cksmaster.core.utils.Page;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("code/message")
 public class CodeMessageController {
     @Autowired
-    private ICodeMessageService codeMessageService;
+    private CodeMessageService codeMessageService;
 
     /**
      * 错误码列表

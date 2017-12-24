@@ -1,11 +1,10 @@
 package com.cksmaster.user.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.cksmaster.common.dubbo.ICodeMessageService;
 import com.cksmaster.common.entity.CodeMessage;
 import com.cksmaster.core.annotation.NotLogin;
 import com.cksmaster.core.utils.Page;
-import com.cksmaster.user.dubbo.IUserService;
+import com.cksmaster.user.dubbo.UserService;
 import com.cksmaster.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,18 +13,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author cks
  * @Date 2017/7/19.
  */
-@RequestMapping("user")
+@RequestMapping("/")
 @RestController
 public class UserServiceController {
 
     @Autowired
-    private IUserService userService;
-    @Reference
+    private UserService userService;
+    @Autowired
     private ICodeMessageService codeMessageService;
 
     /**
@@ -57,7 +57,14 @@ public class UserServiceController {
     @NotLogin
     @RequestMapping(value = "find", method = RequestMethod.GET)
     public Page<CodeMessage> find(Page<CodeMessage>page){
+        page.setPageNum(1);
+        page.setPageSize(1);
         Page<CodeMessage> codeMessagePage = codeMessageService.findPage(page);
         return codeMessagePage;
+    }
+    @NotLogin
+    @RequestMapping(value = "find-all", method = RequestMethod.GET)
+    public List<CodeMessage> findAll(){
+        return codeMessageService.findAll();
     }
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface IUserService {
     void add(User user);
+
     Object[] login(String username,
                    String password,
                    HttpServletRequest request);

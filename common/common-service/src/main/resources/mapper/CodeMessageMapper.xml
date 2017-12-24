@@ -10,7 +10,11 @@
         SELECT count(id) FROM code_message
     </select>
 
-
+    <select id="findAll" resultType="com.cksmaster.common.entity.CodeMessage">
+        <include refid="Base_Column_List"/>
+        from code_message
+        where 1 = 1
+    </select>
     <select id="findCodeMessage" resultType="com.cksmaster.common.entity.CodeMessage"
             parameterType="com.cksmaster.core.utils.Page">
         select

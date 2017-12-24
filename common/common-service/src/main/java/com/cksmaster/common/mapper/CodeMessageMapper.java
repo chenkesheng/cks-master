@@ -2,7 +2,9 @@ package com.cksmaster.common.mapper;
 
 import com.cksmaster.common.entity.CodeMessage;
 import com.cksmaster.core.utils.Page;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
  * @author cks
  * @Date 2017/7/22.
  */
+@Mapper
 public interface CodeMessageMapper {
     /**
      * 总条数
@@ -56,4 +59,11 @@ public interface CodeMessageMapper {
      * @return
      */
     CodeMessage findById(@Param("id") Integer id);
+
+    /**
+     * 查找所有
+     *
+     * @return
+     */
+    List<CodeMessage> findAll();
 }

@@ -23,9 +23,9 @@ import javax.sql.DataSource;
  * @author cks
  * @Date 2017/7/19.
  */
-@Configuration
-@EnableTransactionManagement
-@ComponentScan
+//@Configuration
+//@EnableTransactionManagement
+//@ComponentScan
 @MapperScan("com.cksmaster.user.mapper")
 public class MybatisConfig {
 

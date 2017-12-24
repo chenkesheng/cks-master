@@ -1,6 +1,5 @@
 package com.cksmaster.common.dubbo.service;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.cksmaster.common.dubbo.ICodeMessageService;
 import com.cksmaster.common.entity.CodeMessage;
 import com.cksmaster.common.mapper.CodeMessageMapper;
@@ -10,8 +9,11 @@ import com.google.common.collect.ImmutableMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.sql.DataSource;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +24,9 @@ import java.util.Map;
  */
 @Service
 public class CodeMessageService implements ICodeMessageService {
+
+    @Autowired
+    DataSource dataSource;
 
     @Autowired
     private CodeMessageMapper codeMessageMapper;
@@ -106,5 +111,15 @@ public class CodeMessageService implements ICodeMessageService {
         codeMessageMapper.update(codeMessage);
         CodeMessage codeMessage1 = codeMessageMapper.findById(codeMessage.getId());
         System.out.println("==================================="+codeMessage1.getKey());
+    }
+
+    @Override
+    public List<CodeMessage> findAll() {
+        return codeMessageMapper.findAll();
+    }
+
+    @Override
+    public CodeMessage findById(Integer id) {
+        return codeMessageMapper.findById(id);
     }
 }

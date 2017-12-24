@@ -1,10 +1,10 @@
 package com.cksmaster.user.dubbo;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.cksmaster.core.entity.UserToken;
 import com.cksmaster.core.utils.CommonUtil;
 import com.cksmaster.user.mapper.UserTokenMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
@@ -12,7 +12,7 @@ import java.util.Date;
  * @author cks
  * @Date 2017/7/20.
  */
-@Service(version = "1.0.0")
+@Service
 public class UserTokenService implements IUserTokenService {
 
     @Autowired

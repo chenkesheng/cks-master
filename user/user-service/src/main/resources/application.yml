@@ -1,30 +1,31 @@
 server:
   port: 8030
+  context-path: /user
 ## 数据库 配置数据源
 spring:
   datasource:
-    name: cksmaster
-    url: jdbc:mysql://127.0.0.1:3306/cksmaster
+    name: cks_master
+    url: jdbc:mysql://127.0.0.1:3306/cks_master
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
 
 # Dubbo 服务消费者配置
-  dubbo:
-    application:
-      name: user
-
-    registry:
-      protocol: zookeeper
-      address: localhost:2181
-
-    protocol:
-      name: dubbo
-      port: 22881
-      host: localhost
-
-    scan: com.cksmaster.user.dubbo
+#  dubbo:
+#    application:
+#      name: user
+#
+#    registry:
+#      protocol: zookeeper
+#      address: localhost:2181
+#
+#    protocol:
+#      name: dubbo
+#      port: 22881
+#      host: localhost
+#
+#    scan: com.cksmaster.user.dubbo
 
 #    mybatis:
 #      mapperLocations: classpath:/mapper/*.xml

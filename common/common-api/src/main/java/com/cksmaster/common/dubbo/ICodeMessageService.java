@@ -3,6 +3,8 @@ package com.cksmaster.common.dubbo;
 import com.cksmaster.common.entity.CodeMessage;
 import com.cksmaster.core.utils.Page;
 
+import java.util.List;
+
 /**
  * @author cks
  * @Date 2017/7/21.
@@ -29,6 +31,7 @@ public interface ICodeMessageService {
 
     /**
      * 新增错误码
+     *
      * @param codeMessage
      */
     void insertCodeMessage(CodeMessage codeMessage);
@@ -38,4 +41,12 @@ public interface ICodeMessageService {
      */
     void updateCodeMessage(CodeMessage codeMessage);
 
+    /**
+     * 查找所有错误码
+     *
+     * @return
+     */
+    List<CodeMessage>  findAll();
+
+    CodeMessage findById(Integer id);
 }

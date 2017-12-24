@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://code.alibabatech.com/schema/dubbo  http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
+>
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.cksmaster"/>
+    <context:property-placeholder location="classpath*:*.yml"
+                                  ignore-unresolvable="true"/>
+
+    <bean id="userMybatisConfig" class="com.cksmaster.user.base.MybatisConfig"></bean>
+
+    <!--dubbo基础配置-->
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="user" logger="slf4j" version="1.0" owner="cks"/>
+    <!-- 使用multicast广播注册中心暴露服务地址 -->
+    <!--  <dubbo:registry address="multicast://224.5.6.7:1234" /> -->
+    <!-- 使用zookeeper注册中心暴露服务地址 -->
+    <dubbo:registry timeout="20000" protocol="zookeeper" address="zookeeper://192.168.10.128:2181" />
+    <dubbo:provider timeout="20000" version="1.0.0" delay="-1" retries="0"/>
+    <dubbo:monitor protocol="registry"/>
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20881"/>
+    <!--<dubbo:protocol name="rest" port="20880" server="tomcat" contextpath="/user"/>-->
+
+    <!--暴露服务  dubbo协议-->
+    <dubbo:service interface="com.cksmaster.user.dubbo.IUserTokenService" ref="userTokenService" protocol="dubbo" />
+    <dubbo:service interface="com.cksmaster.user.dubbo.IUserService" ref="userService" protocol="dubbo" />
+    <!--暴露服务  rest协议-->
+
+
+    <!--&lt;!&ndash;dubbo基础配置&ndash;&gt;-->
+    <dubbo:consumer check="false"/>
+    <!--dubbo消费模块-->
+    <dubbo:reference id="codeMessageService" interface="com.cksmaster.common.dubbo.ICodeMessageService" version="1.0.0"/>
+
+</beans>
