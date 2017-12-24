@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://code.alibabatech.com/schema/dubbo  http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
+>
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.cksmaster"/>
+
+    <!--dubbo基础配置-->
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="dubbo" logger="slf4j" version="1.0" owner="cks"/>
+    <!-- 使用multicast广播注册中心暴露服务地址 -->
+    <!--  <dubbo:registry address="multicast://224.5.6.7:1234" /> -->
+    <!-- 使用zookeeper注册中心暴露服务地址 -->
+    <dubbo:registry timeout="20000" protocol="zookeeper" address="zookeeper://127.0.0.1:2181"/>
+    <dubbo:provider timeout="20000" version="1.0.0" delay="-1" retries="0"/>
+    <dubbo:monitor protocol="registry"/>
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20880"/>
+    <dubbo:protocol name="rest" port="20880" server="tomcat" contextpath="/"/>
+
+    <!--暴露服务  dubbo协议-->
+    <dubbo:service interface="com.cksmaster.common.dubbo.ICodeMessageService" ref="codeMessageService"
+                   protocol="dubbo"/>
+    <!--暴露服务  rest协议-->
+
+</beans>
