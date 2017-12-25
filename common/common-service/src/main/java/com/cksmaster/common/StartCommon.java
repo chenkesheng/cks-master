@@ -1,18 +1,14 @@
-package com.cksmaster.user;
+package com.cksmaster.common;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
 
-/**
- * @author cks
- */
 @ImportResource("applicationContext.xml")
 @SpringBootApplication
-public class UserServiceApplication {
+public class StartCommon {
 
-    public static void main(String[] args) {
-        SpringApplication.run(UserServiceApplication.class, args);
-    }
-
+	public static void main(String[] args) {
+		SpringApplication.run(StartCommon.class, args);
+	}
 }

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cksmaster.common.service</groupId>
+    <groupId>com.cks.common.service</groupId>
     <artifactId>common-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
@@ -17,12 +17,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.cksmaster.common.api</groupId>
+            <groupId>com.cks.common.api</groupId>
             <artifactId>common-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.cksmaster.user</groupId>
+            <groupId>com.cks.user.api</groupId>
             <artifactId>user-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
