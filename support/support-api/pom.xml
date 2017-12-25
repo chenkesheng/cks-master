@@ -9,7 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.cks.support.api</groupId>
     <artifactId>cks::support-api</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>cks::support-api</name>
 
 
 </project>
