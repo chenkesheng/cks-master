@@ -13,4 +13,12 @@
     <artifactId>common-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>cks::common-api</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.cks.core</groupId>
+            <artifactId>core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>
