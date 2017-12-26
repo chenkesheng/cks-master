@@ -54,15 +54,22 @@ public class UserServiceController {
                           HttpServletRequest request) {
         return userService.login(username, password, request);
     }
+
+    /**
+     * 查询错误码
+     *
+     * @param page
+     * @return
+     */
     @NotLogin
-    @RequestMapping(value = "find", method = RequestMethod.GET)
-    public Page<CodeMessage> find(Page<CodeMessage>page){
-        Page<CodeMessage> codeMessagePage = codeMessageService.findPage(page);
-        return codeMessagePage;
+    @RequestMapping(value = "find-page", method = RequestMethod.GET)
+    public Page<CodeMessage> find(Page<CodeMessage> page) {
+        return codeMessageService.findPage(page);
     }
+
     @NotLogin
     @RequestMapping(value = "find-all", method = RequestMethod.GET)
-    public List<CodeMessage> findAll(){
+    public List<CodeMessage> findAll() {
         return codeMessageService.findAll();
     }
 }
