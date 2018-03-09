@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * 错误码Controller
  *
@@ -27,11 +29,17 @@ public class CodeMessageController {
      * @param page
      * @return
      */
+    @NotLogin
     @RequestMapping(value = "find-page", method = RequestMethod.GET)
     public Page<CodeMessage> findPage(Page<CodeMessage> page) {
         page.setPageNum(2);
         page.setPageSize(2);
         return codeMessageService.findPage(page);
+    }
+    @NotLogin
+    @RequestMapping(value = "find-all", method = RequestMethod.GET)
+    public List<CodeMessage> findAll(){
+        return codeMessageService.findAll();
     }
 
     /**

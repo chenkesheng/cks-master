@@ -5,12 +5,19 @@ server:
 spring:
   datasource:
     name: cks_master
-    url: jdbc:mysql://192.168.15.38:3306/cksmaster?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    url: jdbc:mysql://192.168.15.40:3306/cksmaster?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
 
+#management:
+#  port: 9090
+#  health:
+#    defaults:
+#      enabled: true
+#  security:
+#    enabled: false
 # Dubbo 服务消费者配置
 #  dubbo:
 #    application:

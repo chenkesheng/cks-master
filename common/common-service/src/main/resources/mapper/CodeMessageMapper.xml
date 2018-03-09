@@ -11,6 +11,7 @@
     </select>
 
     <select id="findAll" resultType="com.cksmaster.common.entity.CodeMessage">
+        SELECT
         <include refid="Base_Column_List"/>
         from code_message
         where 1 = 1

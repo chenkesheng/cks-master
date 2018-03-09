@@ -6,6 +6,7 @@ import com.cksmaster.common.mapper.CodeMessageMapper;
 import com.cksmaster.core.utils.CollectionUtil;
 import com.cksmaster.core.utils.Page;
 import com.google.common.collect.ImmutableMap;
+import org.mengyun.tcctransaction.api.Compensable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +88,7 @@ public class CodeMessageService implements ICodeMessageService {
      * @param page
      * @return
      */
+    @Compensable(confirmMethod = "insertCodeMessage",cancelMethod = "updateCodeMessage")
     public Page<CodeMessage> findPage(Page<CodeMessage> page) {
         if (CollectionUtil.notEmpty(codeMessageMapper.findCodeMessage(page))) {
             page.setResult(codeMessageMapper.findCodeMessage(page));
