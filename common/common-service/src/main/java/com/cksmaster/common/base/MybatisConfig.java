@@ -1,7 +1,5 @@
 package com.cksmaster.common.base;
 
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -33,34 +30,35 @@ public class MybatisConfig {
     private final static Logger logger = LoggerFactory.getLogger(MybatisConfig.class);
 
 
-    @Value("${spring.datasource.type}")
+    @Value("${spring.datasource.druid.type}")
     private Class<? extends DataSource> dataSourceType;
 
+
     @Bean(name = "dataSource", destroyMethod = "close", initMethod = "init")
-    @ConfigurationProperties(prefix = "spring.datasource")
+    @ConfigurationProperties(prefix = "spring.datasource.druid")
     public DataSource dataSource() {
         logger.info("-------------------- writeDataSource init ---------------------");
         return DataSourceBuilder.create().type(dataSourceType).build();
     }
 
-    @Bean
-    public SqlSessionFactory sqlSessionFactory() throws Exception {
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource());
-        sqlSessionFactoryBean.setTypeAliasesPackage("com.cksmaster.common.mapper");
-//        sqlSessionFactoryBean.setPlugins("com.github.pagehelper.PageHelper");
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mapper/*.xml"));
-        sqlSessionFactoryBean.getObject().getConfiguration().setMapUnderscoreToCamelCase(true);
-        return sqlSessionFactoryBean.getObject();
-    }
+//    @Bean
+//    public SqlSessionFactory sqlSessionFactory() throws Exception {
+//        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+//        sqlSessionFactoryBean.setDataSource(dataSource());
+//        sqlSessionFactoryBean.setTypeAliasesPackage("com.cksmaster.common.mapper");
+////        sqlSessionFactoryBean.setPlugins("com.github.pagehelper.PageHelper");
+//        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+//        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mapper/*.xml"));
+//        sqlSessionFactoryBean.getObject().getConfiguration().setMapUnderscoreToCamelCase(true);
+//        return sqlSessionFactoryBean.getObject();
+//    }
 
     /**
      * 配置事务管理器
      */
     @Bean(name = "transactionManager")
     @Primary
-    public DataSourceTransactionManager transactionManager(@Qualifier("dataSource") DataSource dataSource) throws Exception {
+    public DataSourceTransactionManager transactionManager(@Qualifier("dataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
 
