@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ImportResource;
 /**
  * @author cks
  */
-@ImportResource("applicationContext.xml")
+@ImportResource("classpath*:applicationContext.xml")
 @SpringBootApplication
 public class StartUser {
 

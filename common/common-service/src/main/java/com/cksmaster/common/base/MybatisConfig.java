@@ -17,29 +17,30 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 /**
+ * 在没有spring-boot-druid -starter之前需要这个config来使用
  * @author cks
  * @Date 2017/7/19.
  */
-@Configuration
-@EnableTransactionManagement
-@ComponentScan
-@MapperScan("com.cksmaster.common.mapper")
+//@Configuration
+//@EnableTransactionManagement
+//@ComponentScan
+//@MapperScan("com.cksmaster.common.mapper")
 public class MybatisConfig {
 
     //定义一个全局的记录器，通过LoggerFactory获取
     private final static Logger logger = LoggerFactory.getLogger(MybatisConfig.class);
 
 
-    @Value("${spring.datasource.druid.type}")
-    private Class<? extends DataSource> dataSourceType;
+//    @Value("${spring.datasource.druid.type}")
+//    private Class<? extends DataSource> dataSourceType;
 
 
-    @Bean(name = "dataSource", destroyMethod = "close", initMethod = "init")
-    @ConfigurationProperties(prefix = "spring.datasource.druid")
-    public DataSource dataSource() {
-        logger.info("-------------------- writeDataSource init ---------------------");
-        return DataSourceBuilder.create().type(dataSourceType).build();
-    }
+//    @Bean(name = "dataSource", destroyMethod = "close", initMethod = "init")
+//    @ConfigurationProperties(prefix = "spring.datasource.druid")
+//    public DataSource dataSource() {
+//        logger.info("-------------------- writeDataSource init ---------------------");
+//        return DataSourceBuilder.create().type(dataSourceType).build();
+//    }
 
 //    @Bean
 //    public SqlSessionFactory sqlSessionFactory() throws Exception {
@@ -53,14 +54,14 @@ public class MybatisConfig {
 //        return sqlSessionFactoryBean.getObject();
 //    }
 
-    /**
-     * 配置事务管理器
-     */
-    @Bean(name = "transactionManager")
-    @Primary
-    public DataSourceTransactionManager transactionManager(@Qualifier("dataSource") DataSource dataSource) {
-        return new DataSourceTransactionManager(dataSource);
-    }
+//    /**
+//     * 配置事务管理器
+//     */
+//    @Bean(name = "transactionManager")
+//    @Primary
+//    public DataSourceTransactionManager transactionManager(@Qualifier("dataSource") DataSource dataSource) {
+//        return new DataSourceTransactionManager(dataSource);
+//    }
 
 
 }
