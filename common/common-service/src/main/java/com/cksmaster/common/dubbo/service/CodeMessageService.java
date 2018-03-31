@@ -1,5 +1,6 @@
 package com.cksmaster.common.dubbo.service;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.cksmaster.common.dubbo.ICodeMessageService;
 import com.cksmaster.common.entity.CodeMessage;
 import com.cksmaster.common.mapper.CodeMessageMapper;
@@ -10,7 +11,7 @@ import org.mengyun.tcctransaction.api.Compensable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.Date;
@@ -23,7 +24,8 @@ import java.util.Map;
  * @author cks
  * @Date 2017/7/21.
  */
-@Service
+@Service(interfaceClass = ICodeMessageService.class)
+@Component
 public class CodeMessageService implements ICodeMessageService {
 
     @Autowired

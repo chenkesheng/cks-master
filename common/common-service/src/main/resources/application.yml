@@ -3,6 +3,11 @@ server:
   context-path: /common
 ## 数据库 配置数据源
 spring:
+  dubbo:
+    server: true
+    registry: zookeeper://192.168.15.40:2181
+    application:
+      name: common
   datasource:
     druid:
       name: cks_master
@@ -96,22 +101,20 @@ mybatis:
 
     # Dubbo 服务消费者配置
 #  dubbo:
-#    application:
-#      name: common
-#
-#    registry:
-#      protocol: zookeeper
-#      address: localhost:2181
-#
+#    server: true
+#    registry: zookeeper://192.168.15.40:2181
+#      id: my-registry
+#      address: zookeeper://192.168.15.40:2181
+
 #    protocol:
+#      id: dubbo
 #      name: dubbo
 #      port: 21880
 #      host: localhost
-#
-#    scan: com.cksmaster.common.dubbo
 
 #    application:
-#      name: user-consumer
+#      id: common
+#      name: common
 #    registry:
 #      protocol: zookeeper
 #      address: localhost:2181,192.168.16.170:2181
