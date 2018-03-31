@@ -1,7 +1,6 @@
-package com.cksmaster.common.dubbo.service;
+package com.cksmaster.common.dubbo;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.cksmaster.common.dubbo.ICodeMessageService;
 import com.cksmaster.common.entity.CodeMessage;
 import com.cksmaster.common.mapper.CodeMessageMapper;
 import com.cksmaster.core.utils.CollectionUtil;
@@ -11,6 +10,8 @@ import org.mengyun.tcctransaction.api.Compensable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -90,12 +91,15 @@ public class CodeMessageService implements ICodeMessageService {
      * @param page
      * @return
      */
-    @Compensable(confirmMethod = "insertCodeMessage",cancelMethod = "updateCodeMessage")
+    @Compensable(confirmMethod = "insertCodeMessage", cancelMethod = "updateCodeMessage")
     public Page<CodeMessage> findPage(Page<CodeMessage> page) {
+        long currentTimeMillis = System.currentTimeMillis();
         if (CollectionUtil.notEmpty(codeMessageMapper.findCodeMessage(page))) {
             page.setResult(codeMessageMapper.findCodeMessage(page));
             page.setTotal(codeMessageMapper.total());
         }
+        long currentTimeMillis1 = System.currentTimeMillis();
+        System.out.println("page任务耗时:" + (currentTimeMillis1 - currentTimeMillis) + "ms");
         return page;
     }
 
@@ -110,20 +114,32 @@ public class CodeMessageService implements ICodeMessageService {
         codeMessage.setCreateTime(new Date());
         codeMessageMapper.insert(codeMessage);
     }
+
     @Override
     public void updateCodeMessage(CodeMessage codeMessage) {
         codeMessageMapper.update(codeMessage);
         CodeMessage codeMessage1 = codeMessageMapper.findById(codeMessage.getId());
-        System.out.println("==================================="+codeMessage1.getKey());
+        System.out.println("===================================" + codeMessage1.getKey());
     }
 
+    @Async
     @Override
-    public List<CodeMessage> findAll() {
-        return codeMessageMapper.findAll();
+    public List<CodeMessage> findAll() throws Exception {
+        long currentTimeMillis = System.currentTimeMillis();
+        Thread.sleep(10000);
+        List<CodeMessage> codeMessages = codeMessageMapper.findAll();
+        long currentTimeMillis1 = System.currentTimeMillis();
+        System.out.println("findAll任务耗时:" + (currentTimeMillis1 - currentTimeMillis) + "ms");
+        return codeMessages;
     }
 
+    @Async
     @Override
     public CodeMessage findById(Integer id) {
-        return codeMessageMapper.findById(id);
+        long currentTimeMillis = System.currentTimeMillis();
+        CodeMessage codeMessage = codeMessageMapper.findById(id);
+        long currentTimeMillis1 = System.currentTimeMillis();
+        System.out.println("findById任务耗时:" + (currentTimeMillis1 - currentTimeMillis) + "ms");
+        return codeMessage;
     }
 }

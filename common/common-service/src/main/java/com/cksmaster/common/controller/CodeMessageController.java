@@ -1,6 +1,6 @@
 package com.cksmaster.common.controller;
 
-import com.cksmaster.common.dubbo.service.CodeMessageService;
+import com.cksmaster.common.dubbo.CodeMessageService;
 import com.cksmaster.common.entity.CodeMessage;
 import com.cksmaster.core.annotation.NotLogin;
 import com.cksmaster.core.utils.Page;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
 /**
  * 错误码Controller
@@ -31,14 +32,19 @@ public class CodeMessageController {
      */
     @NotLogin
     @RequestMapping(value = "find-page", method = RequestMethod.GET)
-    public Page<CodeMessage> findPage(Page<CodeMessage> page) {
-        page.setPageNum(2);
-        page.setPageSize(2);
-        return codeMessageService.findPage(page);
+    public Page<CodeMessage> findPage(Page<CodeMessage> page) throws Exception {
+        long currentTimeMillis = System.currentTimeMillis();
+        Page<CodeMessage> codeMessagePage = codeMessageService.findPage(page);
+        Future<String> future = (Future<String>) codeMessageService.findAll();
+        System.out.println(future + "异步执行test");
+        long currentTimeMillis1 = System.currentTimeMillis();
+        System.out.println("find任务耗时:" + (currentTimeMillis1 - currentTimeMillis) + "ms");
+        return codeMessagePage;
     }
+
     @NotLogin
     @RequestMapping(value = "find-all", method = RequestMethod.GET)
-    public List<CodeMessage> findAll(){
+    public List<CodeMessage> findAll() throws Exception {
         return codeMessageService.findAll();
     }
 
@@ -55,7 +61,7 @@ public class CodeMessageController {
 
     @NotLogin
     @RequestMapping(value = "update-code", method = RequestMethod.POST)
-    public void update(CodeMessage codeMessage){
+    public void update(CodeMessage codeMessage) {
         codeMessageService.updateCodeMessage(codeMessage);
     }
 }

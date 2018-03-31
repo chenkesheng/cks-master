@@ -46,7 +46,7 @@ public interface ICodeMessageService {
      *
      * @return
      */
-    List<CodeMessage>  findAll();
+    List<CodeMessage>  findAll() throws Exception;
 
-    CodeMessage findById(Integer id);
+    CodeMessage findById(Integer id) throws Exception;
 }

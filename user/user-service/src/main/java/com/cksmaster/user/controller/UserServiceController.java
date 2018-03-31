@@ -66,12 +66,20 @@ public class UserServiceController {
     @NotLogin
     @RequestMapping(value = "find-page", method = RequestMethod.GET)
     public Page<CodeMessage> find(Page<CodeMessage> page) {
-        return codeMessageService.findPage(page);
+        long currentTimeMillis = System.currentTimeMillis();
+        try {
+            codeMessageService.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Page<CodeMessage> codeMessagePage =  codeMessageService.findPage(page);
+        System.out.println("find任务耗时:"+(currentTimeMillis-currentTimeMillis)+"ms");
+        return codeMessagePage;
     }
 
     @NotLogin
     @RequestMapping(value = "find-all", method = RequestMethod.GET)
-    public List<CodeMessage> findAll() {
+    public List<CodeMessage> findAll() throws Exception {
         return codeMessageService.findAll();
     }
 }

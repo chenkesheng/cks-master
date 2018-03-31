@@ -1,4 +1,4 @@
-package com.cksmaster.common.dubbo.service;
+package com.cksmaster.common.dubbo;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.cksmaster.common.dubbo.IServerExceptionLogService;
