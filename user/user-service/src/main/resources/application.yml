@@ -3,6 +3,13 @@ server:
   context-path: /user
 ## 数据库 配置数据源
 spring:
+  dubbo:
+    protocol:
+      port: 21880
+    server: true
+    registry: zookeeper://192.168.15.40:2181
+    application:
+      name: user
   datasource:
     druid:
       name: cks_master
@@ -83,43 +90,6 @@ spring:
             select-into-outfile-allow: false
             #是否允许调用Connection.getMetadata方法，这个方法调用会暴露数据库的表信息
             metadata-allow: true
+
 mybatis:
   mapper-locations: classpath:/mapper/*.xml
-  typeAliasesPackage: com.cksmaster.user.mapper
-#management:
-#  port: 9090
-#  health:
-#    defaults:
-#      enabled: true
-#  security:
-#    enabled: false
-# Dubbo 服务消费者配置
-#  dubbo:
-#    application:
-#      name: user
-#
-#    registry:
-#      protocol: zookeeper
-#      address: localhost:2181
-#
-#    protocol:
-#      name: dubbo
-#      port: 22881
-#      host: localhost
-#
-#    scan: com.cksmaster.user.dubbo
-
-#    mybatis:
-#      mapperLocations: classpath:/mapper/*.xml
-#      typeAliasesPackage: com.cksmaster.user.mapper
-
-#    application:
-#      name: user-consumer
-#    registry:
-#      protocol: zookeeper
-#      address: localhost:2181,192.168.16.170:2181
-#    protocol:
-#      name: dubbo
-#      port: 20880
-#      host: localhost
-#    scan: com.cksmaster.controller

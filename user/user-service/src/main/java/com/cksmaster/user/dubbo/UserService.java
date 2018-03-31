@@ -1,8 +1,7 @@
 package com.cksmaster.user.dubbo;
 
 
-import com.cksmaster.common.dubbo.ICodeMessageService;
-import com.cksmaster.common.entity.CodeMessage;
+import com.alibaba.dubbo.config.annotation.Service;
 import com.cksmaster.core.constants.Constants;
 import com.cksmaster.core.entity.UserToken;
 import com.cksmaster.core.utils.BCryptUtil;
@@ -12,7 +11,7 @@ import com.cksmaster.user.entity.User;
 import com.cksmaster.user.mapper.UserMapper;
 import com.cksmaster.user.mapper.UserTokenMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -21,7 +20,8 @@ import java.util.Date;
  * @author cks
  * @Date 2017/7/19.
  */
-@Service
+@Service(interfaceClass = IUserService.class)
+@Component
 public class UserService implements IUserService {
 
     @Autowired

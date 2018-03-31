@@ -1,9 +1,11 @@
 package com.cksmaster.user.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.cksmaster.common.dubbo.ICodeMessageService;
 import com.cksmaster.common.entity.CodeMessage;
 import com.cksmaster.core.annotation.NotLogin;
 import com.cksmaster.core.utils.Page;
+import com.cksmaster.user.dubbo.IUserService;
 import com.cksmaster.user.dubbo.UserService;
 import com.cksmaster.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,9 @@ import java.util.List;
 @RestController
 public class UserServiceController {
 
-    @Autowired
-    private UserService userService;
-    @Autowired
+    @Reference(url = "dubbo://127.0.0.1:20880")
+    private IUserService userService;
+    @Reference(url = "dubbo://127.0.0.1:20880")
     private ICodeMessageService codeMessageService;
 
     /**
