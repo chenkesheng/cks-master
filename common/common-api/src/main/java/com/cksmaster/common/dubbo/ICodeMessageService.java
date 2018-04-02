@@ -4,6 +4,7 @@ import com.cksmaster.common.entity.CodeMessage;
 import com.cksmaster.core.utils.Page;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
 /**
  * @author cks
@@ -27,7 +28,7 @@ public interface ICodeMessageService {
      * @param page
      * @return
      */
-    Page<CodeMessage> findPage(Page<CodeMessage> page);
+    Page<CodeMessage> findPage(Page<CodeMessage> page) throws InterruptedException;
 
     /**
      * 新增错误码
@@ -47,6 +48,8 @@ public interface ICodeMessageService {
      * @return
      */
     List<CodeMessage>  findAll() throws Exception;
+
+    Future<List<CodeMessage>> findAlls() throws Exception;
 
     CodeMessage findById(Integer id) throws Exception;
 }

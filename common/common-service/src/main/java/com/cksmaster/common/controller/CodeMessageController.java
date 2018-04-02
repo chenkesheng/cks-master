@@ -34,9 +34,16 @@ public class CodeMessageController {
     @RequestMapping(value = "find-page", method = RequestMethod.GET)
     public Page<CodeMessage> findPage(Page<CodeMessage> page) throws Exception {
         long currentTimeMillis = System.currentTimeMillis();
+        Future<List<CodeMessage>> future = codeMessageService.findAlls();
         Page<CodeMessage> codeMessagePage = codeMessageService.findPage(page);
-        Future<String> future = (Future<String>) codeMessageService.findAll();
-        System.out.println(future + "异步执行test");
+
+
+        List<CodeMessage> codeMessageList = future.get();
+
+
+
+
+        System.out.println(codeMessageList.toString() + "异步执行test");
         long currentTimeMillis1 = System.currentTimeMillis();
         System.out.println("find任务耗时:" + (currentTimeMillis1 - currentTimeMillis) + "ms");
         return codeMessagePage;

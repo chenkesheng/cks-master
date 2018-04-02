@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,7 @@ import javax.sql.DataSource;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Future;
 
 /**
  * 错误码对应的消息工具类
@@ -91,9 +93,12 @@ public class CodeMessageService implements ICodeMessageService {
      * @param page
      * @return
      */
+    @Async
     @Compensable(confirmMethod = "insertCodeMessage", cancelMethod = "updateCodeMessage")
-    public Page<CodeMessage> findPage(Page<CodeMessage> page) {
+    public Page<CodeMessage> findPage(Page<CodeMessage> page) throws InterruptedException {
+
         long currentTimeMillis = System.currentTimeMillis();
+        Thread.sleep(10000);
         if (CollectionUtil.notEmpty(codeMessageMapper.findCodeMessage(page))) {
             page.setResult(codeMessageMapper.findCodeMessage(page));
             page.setTotal(codeMessageMapper.total());
@@ -131,6 +136,17 @@ public class CodeMessageService implements ICodeMessageService {
         long currentTimeMillis1 = System.currentTimeMillis();
         System.out.println("findAll任务耗时:" + (currentTimeMillis1 - currentTimeMillis) + "ms");
         return codeMessages;
+    }
+
+    @Async
+    @Override
+    public Future<List<CodeMessage>> findAlls() throws Exception {
+        long currentTimeMillis = System.currentTimeMillis();
+        Thread.sleep(10000);
+        List<CodeMessage> codeMessages = codeMessageMapper.findAll();
+        long currentTimeMillis1 = System.currentTimeMillis();
+        System.out.println("findAll任务耗时:" + (currentTimeMillis1 - currentTimeMillis) + "ms");
+        return new AsyncResult<List<CodeMessage>>(codeMessages);
     }
 
     @Async
