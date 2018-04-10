@@ -65,7 +65,7 @@ public class UserServiceController {
      */
     @NotLogin
     @RequestMapping(value = "find-page", method = RequestMethod.GET)
-    public Page<CodeMessage> find(Page<CodeMessage> page) {
+    public Page<CodeMessage> find(Page<CodeMessage> page) throws InterruptedException {
         long currentTimeMillis = System.currentTimeMillis();
         try {
             codeMessageService.findAll();
