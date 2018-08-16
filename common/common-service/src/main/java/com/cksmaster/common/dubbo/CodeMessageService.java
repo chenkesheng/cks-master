@@ -6,13 +6,11 @@ import com.cksmaster.common.mapper.CodeMessageMapper;
 import com.cksmaster.core.utils.CollectionUtil;
 import com.cksmaster.core.utils.Page;
 import com.google.common.collect.ImmutableMap;
-import org.mengyun.tcctransaction.api.Compensable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -94,7 +92,7 @@ public class CodeMessageService implements ICodeMessageService {
      * @return
      */
     @Async
-    @Compensable(confirmMethod = "insertCodeMessage", cancelMethod = "updateCodeMessage")
+//    @Compensable(confirmMethod = "insertCodeMessage", cancelMethod = "updateCodeMessage")
     public Page<CodeMessage> findPage(Page<CodeMessage> page) throws InterruptedException {
 
         long currentTimeMillis = System.currentTimeMillis();

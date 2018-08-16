@@ -6,6 +6,10 @@ spring:
   dubbo:
     server: true
     registry: zookeeper://192.168.15.40:2181
+    protocol:
+     name: dubbo
+     serialization: kryo
+     optimizer: com.cksmaster.common.dubbo.SerializationOptimizerImpl
     application:
       name: common
   datasource:

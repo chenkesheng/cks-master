@@ -1,7 +1,10 @@
 package com.cksmaster.user.dubbo;
 
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.cksmaster.common.dubbo.ICodeMessageService;
+import com.cksmaster.common.entity.CodeMessage;
 import com.cksmaster.core.constants.Constants;
 import com.cksmaster.core.entity.UserToken;
 import com.cksmaster.core.utils.BCryptUtil;
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author cks
@@ -30,8 +34,8 @@ public class UserService implements IUserService {
     @Autowired
     private UserTokenMapper userTokenMapper;
 
-//    @Autowired
-//    public ICodeMessageService codeMessageService;
+    @Reference(cache = "codeMessageService")
+    public ICodeMessageService codeMessageService;
 
     @Override
     public void add(User user) {
@@ -76,7 +80,7 @@ public class UserService implements IUserService {
         return new Object[]{user, token};
     }
 
-//    public void update(CodeMessage codeMessage) {
-//        codeMessageService.updateCodeMessage(codeMessage);
+//    public CodeMessage find(Integer id) {
+//        return codeMessageService.findById(id);
 //    }
 }

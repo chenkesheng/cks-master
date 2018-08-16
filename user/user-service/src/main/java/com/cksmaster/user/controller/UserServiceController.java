@@ -25,9 +25,9 @@ import java.util.List;
 @RestController
 public class UserServiceController {
 
-    @Reference(url = "dubbo://127.0.0.1:20880")
+    @Reference(url = "dubbo://127.0.0.1:20880",cache = "userService")
     private IUserService userService;
-    @Reference(url = "dubbo://127.0.0.1:20880")
+    @Reference(url = "dubbo://127.0.0.1:20880",cache = "codeMessageService")
     private ICodeMessageService codeMessageService;
 
     /**

@@ -14,4 +14,6 @@ public interface IUserService {
     Object[] login(String username,
                    String password,
                    HttpServletRequest request);
+
+//    CodeMessage find(Integer id);
 }

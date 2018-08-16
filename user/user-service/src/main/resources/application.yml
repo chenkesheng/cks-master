@@ -5,6 +5,8 @@ server:
 spring:
   dubbo:
     protocol:
+      name: dubbo
+      serialization: kryo
       port: 21880
     server: true
     registry: zookeeper://192.168.15.40:2181
@@ -93,3 +95,5 @@ spring:
 
 mybatis:
   mapper-locations: classpath:/mapper/*.xml
+
+cks: aaa
