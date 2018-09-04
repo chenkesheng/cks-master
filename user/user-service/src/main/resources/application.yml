@@ -9,7 +9,7 @@ spring:
       serialization: kryo
       port: 21880
     server: true
-    registry: zookeeper://192.168.15.40:2181
+    registry: zookeeper://192.168.15.40:2181?client=curator
     application:
       name: user
   datasource:

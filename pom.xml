@@ -98,6 +98,14 @@
             <version>0.10</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-framework -->
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+
+
 
         <!--https://mvnrepository.com/artifact/ch.qos.logback/logback-classic-->
         <dependency>

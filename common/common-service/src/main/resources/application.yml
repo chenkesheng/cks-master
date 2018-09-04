@@ -5,7 +5,7 @@ server:
 spring:
   dubbo:
     server: true
-    registry: zookeeper://192.168.15.40:2181
+    registry: zookeeper://192.168.15.40:2181?client=curator
     protocol:
      name: dubbo
      serialization: kryo
