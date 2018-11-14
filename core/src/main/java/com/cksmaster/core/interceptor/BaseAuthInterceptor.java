@@ -8,7 +8,7 @@ import com.cksmaster.core.entity.UserToken;
 import com.cksmaster.core.exception.RequestNotFoundException;
 import com.cksmaster.core.exception.UserNotLoginException;
 import com.cksmaster.core.utils.StringUtil;
-import org.springframework.boot.autoconfigure.web.BasicErrorController;
+import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;

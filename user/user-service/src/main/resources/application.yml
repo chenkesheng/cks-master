@@ -9,13 +9,13 @@ spring:
       serialization: kryo
       port: 21880
     server: true
-    registry: zookeeper://192.168.15.40:2181?client=curator
+    registry: zookeeper://127.0.0.1:2181?client=curator
     application:
       name: user
   datasource:
     druid:
       name: cks_master
-      url: jdbc:mysql://192.168.15.40:3306/cksmaster?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+      url: jdbc:mysql://127.0.0.1:3306/cksmaster?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
       username: root
       password: root
       type: com.alibaba.druid.pool.DruidDataSource
@@ -93,7 +93,27 @@ spring:
             #是否允许调用Connection.getMetadata方法，这个方法调用会暴露数据库的表信息
             metadata-allow: true
 
+  rabbitmq:
+    ####连接地址
+    host: 127.0.0.1
+    ####端口号
+    port: 5672
+    ####账号
+    username: cks
+    ####密码
+    password: 123456
+    ### 地址
+    virtual-host: admin
+    listener:
+      simple:
+        retry:
+          ####开启消费者重试 消费者发生异常会进行重试
+          enabled: true
+          ####最大重试次数
+          max-attempts: 5
+          ####重试间隔次数
+          initial-interval: 3000
+        acknowledge-mode: MANUAL
+
 mybatis:
   mapper-locations: classpath:/mapper/*.xml
-
-cks: aaa

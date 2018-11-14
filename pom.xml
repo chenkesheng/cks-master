@@ -23,15 +23,15 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.10.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.0.6.RELEASE</version>
+        <relativePath />
     </parent>
     <!-- 这里是jdk版本跟编码格式 -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <mybatis-spring-boot>1.3.1</mybatis-spring-boot>
+        <mybatis-spring-boot>1.3.2</mybatis-spring-boot>
         <mybatis-page-plugin>1.1.3</mybatis-page-plugin>
         <mysql-connector>6.0.6</mysql-connector>
         <tcc-spring-version>1.2.4.17</tcc-spring-version>
@@ -46,6 +46,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
@@ -98,6 +99,12 @@
             <version>0.10</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-amqp -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-framework -->
         <dependency>
             <groupId>org.apache.curator</groupId>
@@ -105,6 +112,13 @@
             <version>4.0.1</version>
         </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
 
 
         <!--https://mvnrepository.com/artifact/ch.qos.logback/logback-classic-->
@@ -133,6 +147,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql-connector}</version>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
@@ -146,9 +161,8 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.9</version>
+            <version>1.1.10</version>
         </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
         <dependency>
@@ -157,34 +171,33 @@
             <version>1.2.36</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.mengyun</groupId>
-            <artifactId>tcc-transaction-spring</artifactId>
-            <version>${tcc-spring-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mengyun</groupId>
-            <artifactId>tcc-transaction-core</artifactId>
-            <version>${tcc-core-version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.mengyun</groupId>-->
+            <!--<artifactId>tcc-transaction-spring</artifactId>-->
+            <!--<version>${tcc-spring-version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.mengyun</groupId>-->
+            <!--<artifactId>tcc-transaction-core</artifactId>-->
+            <!--<version>${tcc-core-version}</version>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.mengyun</groupId>
-            <artifactId>tcc-transaction-api</artifactId>
-            <version>${tcc-api-version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.mengyun</groupId>-->
+            <!--<artifactId>tcc-transaction-api</artifactId>-->
+            <!--<version>${tcc-api-version}</version>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.mengyun</groupId>
-            <artifactId>tcc-transaction-server</artifactId>
-            <version>${tcc-server-version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.mengyun</groupId>-->
+            <!--<artifactId>tcc-transaction-server</artifactId>-->
+            <!--<version>${tcc-server-version}</version>-->
+        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
         <!--<dependency>-->
         <!--<groupId>org.springframework.boot</groupId>-->
         <!--<artifactId>spring-boot-starter-actuator</artifactId>-->
-        <!--<version>1.5.10.RELEASE</version>-->
         <!--</dependency>-->
 
 

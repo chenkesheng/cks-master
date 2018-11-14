@@ -6,7 +6,7 @@ import com.cksmaster.core.constants.Constants;
 import com.cksmaster.core.context.SystemContextHolder;
 import com.cksmaster.core.entity.UserSystemContext;
 import com.cksmaster.core.exception.UserNotLoginException;
-import org.springframework.boot.autoconfigure.web.BasicErrorController;
+import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
