@@ -12,6 +12,7 @@
         <module>common</module>
         <module>support</module>
         <module>user</module>
+        <module>schedules</module>
     </modules>
     <!-- maven的打包方式、我这里是jar打包就是jar。以前大多数都是用war包。 -->
     <packaging>pom</packaging>
