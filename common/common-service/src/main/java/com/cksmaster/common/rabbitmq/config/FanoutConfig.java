@@ -4,6 +4,7 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -45,13 +46,13 @@ public class FanoutConfig {
 
     // 3.队列与交换机绑定邮件队列
     @Bean
-    Binding bindingExchangeEmail(Queue fanoutEmailQueue, FanoutExchange fanoutExchange) {
+    Binding bindingExchangeEmail(@Qualifier("fanoutEmailQueue") Queue fanoutEmailQueue, FanoutExchange fanoutExchange) {
         return BindingBuilder.bind(fanoutEmailQueue).to(fanoutExchange);
     }
 
     // 4.队列与交换机绑定短信队列
     @Bean
-    Binding bindingExchangeSms(Queue fanoutSmsQueue, FanoutExchange fanoutExchange) {
+    Binding bindingExchangeSms(@Qualifier("fanoutSmsQueue") Queue fanoutSmsQueue, FanoutExchange fanoutExchange) {
         return BindingBuilder.bind(fanoutSmsQueue).to(fanoutExchange);
     }
 }
