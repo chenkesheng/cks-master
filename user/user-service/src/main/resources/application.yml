@@ -1,7 +1,7 @@
 server:
   port: 8030
   servlet:
-   context-path: /user
+    context-path: /user
 ## 数据库 配置数据源
 spring:
   dubbo:
