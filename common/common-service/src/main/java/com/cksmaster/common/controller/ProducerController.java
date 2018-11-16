@@ -1,9 +1,11 @@
 package com.cksmaster.common.controller;
 
 import com.cksmaster.common.rabbitmq.FanoutProducer;
+import com.cksmaster.core.annotation.NotLogin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Package: com.cksmaster.common.controller
  * @Description:
  */
-@RestController
+@RestController("/")
 public class ProducerController {
 
     @Autowired
@@ -21,8 +23,9 @@ public class ProducerController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    @RequestMapping("/sendFanout")
-    public String sendFanout(String queueName) {
+    @NotLogin
+    @GetMapping("/sendFanout")
+    public String sendFanout(@RequestParam("queueName") String queueName) {
         fanoutProducer.send(queueName);
         return "success";
     }

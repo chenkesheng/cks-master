@@ -22,8 +22,7 @@ public class FanoutEmailConsumer {
 
     @RabbitListener(queues = "fanout_email_queue")
     public void process(Message message, @Headers Map<String, Object> headers, Channel channel) throws Exception {
-        System.out
-                .println(Thread.currentThread().getName() + ",邮件消费者获取生产者消息msg:" + new String(message.getBody(), "UTF-8")
+        System.out.println(Thread.currentThread().getName() + ",邮件消费者获取生产者消息msg:" + new String(message.getBody(), "UTF-8")
                         + ",messageId:" + message.getMessageProperties().getMessageId());
         // 手动ack
         Long deliveryTag = (Long) headers.get(AmqpHeaders.DELIVERY_TAG);
@@ -37,6 +36,5 @@ public class FanoutEmailConsumer {
         }
         // 邮件消费成功... 通知队列服务器端删除该消息...
         channel.basicAck(deliveryTag, false);
-
     }
 }

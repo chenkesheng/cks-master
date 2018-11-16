@@ -1,6 +1,7 @@
 server:
   port: 8010
-  context-path: /common
+  servlet:
+   context-path: /common
 ## 数据库 配置数据源
 spring:
   dubbo:

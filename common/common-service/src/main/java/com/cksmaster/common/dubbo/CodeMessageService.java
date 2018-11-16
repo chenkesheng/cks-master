@@ -125,14 +125,9 @@ public class CodeMessageService implements ICodeMessageService {
         System.out.println("===================================" + codeMessage1.getKey());
     }
 
-    @Async
     @Override
     public List<CodeMessage> findAll() throws Exception {
-        long currentTimeMillis = System.currentTimeMillis();
-        Thread.sleep(10000);
         List<CodeMessage> codeMessages = codeMessageMapper.findAll();
-        long currentTimeMillis1 = System.currentTimeMillis();
-        System.out.println("findAll任务耗时:" + (currentTimeMillis1 - currentTimeMillis) + "ms");
         return codeMessages;
     }
 
@@ -144,7 +139,7 @@ public class CodeMessageService implements ICodeMessageService {
         List<CodeMessage> codeMessages = codeMessageMapper.findAll();
         long currentTimeMillis1 = System.currentTimeMillis();
         System.out.println("findAll任务耗时:" + (currentTimeMillis1 - currentTimeMillis) + "ms");
-        return new AsyncResult<List<CodeMessage>>(codeMessages);
+        return new AsyncResult<>(codeMessages);
     }
 
     @Async
