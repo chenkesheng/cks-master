@@ -7,6 +7,7 @@ import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.messaging.handler.annotation.Headers;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import java.util.Map;
  * @Package: com.cksmaster.user.rabbitmq
  * @Description: 监听邮件消息消费
  */
+@Component
 public class FanoutEmailConsumer {
 
     private static final String SMS_URL = "http://127.0.0.1:8010/sendEmail";
