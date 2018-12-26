@@ -8,6 +8,9 @@ import com.cksmaster.core.utils.Page;
 import com.cksmaster.user.dubbo.IUserService;
 import com.cksmaster.user.dubbo.UserService;
 import com.cksmaster.user.entity.User;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +26,7 @@ import java.util.List;
  */
 @RequestMapping("/")
 @RestController
+@Api("用户api")
 public class UserServiceController {
 
     @Reference(url = "dubbo://127.0.0.1:20880",cache = "userService")
@@ -49,6 +53,8 @@ public class UserServiceController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "根据用户名密码来确认用户登录", notes = "客户登录校验")
+    @ApiImplicitParam(name = "username,password", value = "用户名、密码", paramType = "path", required = true, dataType = "String")
     @NotLogin
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public Object[] login(@RequestParam("username") String username,

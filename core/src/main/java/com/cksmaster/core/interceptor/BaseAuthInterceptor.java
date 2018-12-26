@@ -25,7 +25,11 @@ import javax.servlet.http.HttpServletResponse;
 public abstract class BaseAuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        authorization(getSystemType((HandlerMethod) o), httpServletRequest, httpServletResponse);
+        String uri = httpServletRequest.getRequestURI();
+//        System.out.println(uri);
+//        if (!"/user/swagger-ui.html".equals(uri)) {
+//           authorization(getSystemType((HandlerMethod) o), httpServletRequest, httpServletResponse);
+//     }
         return true;
     }
 

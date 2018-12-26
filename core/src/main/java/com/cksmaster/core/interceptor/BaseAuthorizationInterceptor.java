@@ -24,23 +24,29 @@ public abstract class BaseAuthorizationInterceptor implements HandlerInterceptor
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
-        UserSystemContext userSystemContext = SystemContextHolder.getUserContext();
-        switch (userSystemContext.getSystemType()) {
-            case Constants.SYSTEM_PLATFORM_WORKSHOP:
-                if (whetherLogin((HandlerMethod)o) && !userSystemContext.isDoLogin()) {
-                    throw new UserNotLoginException();
-                }
-                break;
-            case Constants.SYSTEM_HOSPITAL_WORKSHOP:
-                if (whetherLogin((HandlerMethod)o)) {
-                    if (!userSystemContext.isDoLogin()) {
-                        throw new UserNotLoginException();
-                    } else {
-                        workshopPermissionCheckHandler(request.getRequestURI());
-                    }
-                }
-                break;
-        }
+        String uri = request.getRequestURI();
+
+        System.out.println(uri);
+//        if (!"/user/swagger-ui.html".equals(uri)){
+//            UserSystemContext userSystemContext = SystemContextHolder.getUserContext();
+//            switch (userSystemContext.getSystemType()) {
+//                case Constants.SYSTEM_PLATFORM_WORKSHOP:
+//                    if (whetherLogin((HandlerMethod)o) && !userSystemContext.isDoLogin()) {
+//                        throw new UserNotLoginException();
+//                    }
+//                    break;
+//                case Constants.SYSTEM_HOSPITAL_WORKSHOP:
+//                    if (whetherLogin((HandlerMethod)o)) {
+//                        if (!userSystemContext.isDoLogin()) {
+//                            throw new UserNotLoginException();
+//                        } else {
+//                            workshopPermissionCheckHandler(request.getRequestURI());
+//                        }
+//                    }
+//                    break;
+//            }
+//        }
+
         return true;
     }
 
