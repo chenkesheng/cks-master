@@ -9,6 +9,7 @@ import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 /**
@@ -24,7 +25,7 @@ public class FanoutEmailConsumer {
 
     @RabbitListener(queues = "fanout_email_queue")
     public void process(Message message, @Headers Map<String, Object> headers, Channel channel) throws Exception {
-        System.out.println(Thread.currentThread().getName() + ",邮件消费者获取生产者消息msg:" + new String(message.getBody(), "UTF-8")
+        System.out.println(Thread.currentThread().getName() + ",邮件消费者获取生产者消息msg:" + new String(message.getBody(), StandardCharsets.UTF_8)
                         + ",messageId:" + message.getMessageProperties().getMessageId());
         // 手动ack
         Long deliveryTag = (Long) headers.get(AmqpHeaders.DELIVERY_TAG);
@@ -43,7 +44,7 @@ public class FanoutEmailConsumer {
 
     @RabbitListener(queues = "fanout_email_queue")
     public void processd(Message message, @Headers Map<String, Object> headers, Channel channel) throws Exception {
-        System.out.println(Thread.currentThread().getName() + ",邮件消费者获取生产者消息1111msg:" + new String(message.getBody(), "UTF-8")
+        System.out.println(Thread.currentThread().getName() + ",邮件消费者获取生产者消息1111msg:" + new String(message.getBody(), StandardCharsets.UTF_8)
                 + ",messageId:" + message.getMessageProperties().getMessageId());
         // 手动ack
         Long deliveryTag = (Long) headers.get(AmqpHeaders.DELIVERY_TAG);
@@ -55,7 +56,7 @@ public class FanoutEmailConsumer {
 //            System.out.println("抛出异常,开始进行补偿消费消息...");
 //            throw new Exception("发送邮件失败,进行补偿!!!");
 //        }
-        // 邮件消费成功... 通知队列服务器端删除该消息...
+        // 邮件消费成功... 通知队列服务器端删除该消息... 这是把autoAck给关闭了手动ack
         channel.basicAck(deliveryTag, false);
     }
 }

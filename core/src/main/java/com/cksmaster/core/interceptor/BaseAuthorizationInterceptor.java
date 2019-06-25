@@ -26,7 +26,7 @@ public abstract class BaseAuthorizationInterceptor implements HandlerInterceptor
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
         String uri = request.getRequestURI();
 
-        System.out.println(uri);
+//        System.out.println(uri);
 //        if (!"/user/swagger-ui.html".equals(uri)){
 //            UserSystemContext userSystemContext = SystemContextHolder.getUserContext();
 //            switch (userSystemContext.getSystemType()) {

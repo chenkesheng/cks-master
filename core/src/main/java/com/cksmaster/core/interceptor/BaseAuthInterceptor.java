@@ -28,8 +28,8 @@ public abstract class BaseAuthInterceptor implements HandlerInterceptor {
         String uri = httpServletRequest.getRequestURI();
 //        System.out.println(uri);
 //        if (!"/user/swagger-ui.html".equals(uri)) {
-//           authorization(getSystemType((HandlerMethod) o), httpServletRequest, httpServletResponse);
-//     }
+//            authorization(getSystemType((HandlerMethod) o), httpServletRequest, httpServletResponse);
+//        }
         return true;
     }
 
